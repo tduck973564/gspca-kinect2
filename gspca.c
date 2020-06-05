@@ -1439,6 +1439,8 @@ static const struct video_device gspca_template = {
 	.fops = &dev_fops,
 	.ioctl_ops = &dev_ioctl_ops,
 	.release = video_device_release_empty, /* We use v4l2_dev.release */
+	.device_caps = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_STREAMING
+		| V4L2_CAP_READWRITE,
 };
 
 /*
