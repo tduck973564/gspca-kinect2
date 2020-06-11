@@ -22,6 +22,7 @@
 #define GSPCA_VERSION	"2.14.0"
 
 #include <linux/init.h>
+#include <linux/version.h>
 #include <linux/fs.h>
 #include <linux/vmalloc.h>
 #include <linux/sched.h>
@@ -1561,7 +1562,11 @@ int gspca_dev_probe2(struct usb_interface *intf,
 
 	/* init video stuff */
 	ret = video_register_device(&gspca_dev->vdev,
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,7,0)
 				  VFL_TYPE_GRABBER,
+#else
+				  VFL_TYPE_VIDEO,
+#endif
 				  -1);
 	if (ret < 0) {
 		pr_err("video_register_device err %d\n", ret);
