@@ -1,5 +1,14 @@
-apt-get install ffmpeg
+if ! which ffmpeg ; then
+	echo "ffmpeg is not installed, install ffmpeg"
+	exit 1
+fi
+if [ "$EUID" -ne 0 ]; then 
+	echo "you are not running as root, prefix this script with the sudo command"
+  	exit
+fi
 
+mkdir gspca-kinect-installation
+cd gspca-kinect-installation
 echo "Cloning GSPCA Repo..."
 git clone https://github.com/grandchild/gspca-kinect2.git && cd gspca-kinect2
 echo "Building & Installing Modules (copying into /lib/modules/`uname -r`/kernel/drivers/kinect)"
@@ -38,7 +47,7 @@ Type=simple
 ExecStart=ffmpeg -i /dev/video0 -vsync drop -filter:v fps=30,scale=1280:-1,hflip -pix_fmt yuyv422 -color_trc bt709 -color_primaries bt709 -color_range tv -f v4l2 /dev/video10
 
 [Install]
-WantedBy=multi-user.target" > /lib/systemd/system/v4l2-kinect.service
+WantedBy=multi-user.target" > /etc/systemd/system/v4l2-kinect.service
 
 echo "Enabling v4l2-loopback.service at boot"
 systemctl enable v4l2-loopback
