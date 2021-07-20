@@ -50,4 +50,4 @@ ExecStart=ffmpeg -i /dev/video0 -vsync drop -filter:v fps=30,scale=1280:-1,hflip
 WantedBy=multi-user.target" > /etc/systemd/system/v4l2-kinect.service
 
 echo "Enabling v4l2-loopback.service at boot"
-systemctl enable v4l2-loopback
+systemctl enable v4l2-kinect
