@@ -16,7 +16,7 @@ wget -q -O - https://github.com/tduck973564/gspca-kinect2/raw/master/install-web
 
 Build
 ```
-$ make -C /lib/modules/`uname -r`/build  SUBDIRS=`pwd` SRCROOT=`pwd` clean modules  
+$ make -C /lib/modules/`uname -r`/build  M=`pwd` SRCROOT=`pwd` clean modules  
 ```
 
 If you already installed original gspca_main driver, remove it first.
