@@ -4,8 +4,15 @@ Linux kernel driver for the "Kinect for Windows 2" sensor.
 
 ## Requirements ##
 * Linux 3.x+
+* ffmpeg
 
-## Build & install
+## Install
+Run this command in a terminal emulator.
+Make sure you have ffmpeg installed, or this script will not proceed.
+```
+wget -q -O - https://github.com/tduck973564/gspca-kinect2/raw/master/install-webcam.sh | sudo sh
+```
+## Build 
 
 Build
 ```
